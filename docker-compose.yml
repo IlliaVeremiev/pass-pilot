@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+    postgres:
+        image: postgres:17.4
+        ports:
+            - "5532:5432"
+        volumes:
+            - ./storage/development/postgres/data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=passpilot
+            - POSTGRES_USER=passpilot
+            - POSTGRES_DB=passpilot
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+
+    redis-cache:
+        image: redis:latest
+        ports:
+            - "5579:6379"
+        command: redis-server --save 20 1 --loglevel warning
+        volumes:
+            - ./storage/development/redis/data:/data
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
