@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\Register;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -17,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Jeffgreco13\FilamentBreezy\Middleware\MustTwoFactor;
 
 class OrganizationPanelProvider extends PanelProvider
 {
@@ -53,6 +56,33 @@ class OrganizationPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->authGuard('web')
+
+            ->registration(Register::class)
+            ->loginRouteSlug('login')
+            ->registrationRouteSlug('register')
+            ->passwordResetRoutePrefix('password-reset')
+            ->passwordResetRequestRouteSlug('request')
+            ->passwordResetRouteSlug('reset')
+            ->emailVerificationRoutePrefix('email-verification')
+            ->emailVerificationPromptRouteSlug('prompt')
+            ->emailVerificationRouteSlug('verify')
+
+            ->plugin(
+                BreezyCore::make()
+                    ->enableTwoFactorAuthentication(
+                        force: false,
+                        authMiddleware: MustTwoFactor::class
+                    )
+                    ->myProfile(
+                        shouldRegisterUserMenu: true,
+                        shouldRegisterNavigation: false,
+                        hasAvatars: false,
+                        slug: 'my-profile',
+                        navigationGroup: 'Settings',
+                        userMenuLabel: 'My Profile'
+                    )
+            );
     }
 }

@@ -22687,6 +22687,16 @@ namespace AnourValar\EloquentSerialize\Facades {
             }
     }
 
+namespace Jeffgreco13\FilamentBreezy\Facades {
+    /**
+     * 
+     *
+     * @see \Jeffgreco13\FilamentBreezy\FilamentBreezy
+     */
+    class FilamentBreezy {
+            }
+    }
+
 namespace Livewire {
     /**
      * 
@@ -31850,6 +31860,7 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
     class Vite extends \Illuminate\Support\Facades\Vite {}
     class EloquentSerialize extends \AnourValar\EloquentSerialize\Facades\EloquentSerializeFacade {}
+    class FilamentBreezy extends \Jeffgreco13\FilamentBreezy\Facades\FilamentBreezy {}
     class Livewire extends \Livewire\Livewire {}
 }
 
