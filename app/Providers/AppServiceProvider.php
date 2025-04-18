@@ -11,7 +11,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
+        $this->app->singleton(
+            \Filament\Http\Responses\Auth\Contracts\LoginResponse::class,
+            \App\Filament\Http\Responses\Auth\LoginResponse::class,
+        );
+        $this->app->singleton(
+            \Filament\Http\Responses\Auth\Contracts\LogoutResponse::class,
+            \App\Filament\Http\Responses\Auth\LogoutResponse::class,
+        );
     }
 
     /**
