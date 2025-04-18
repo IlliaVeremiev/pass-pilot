@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Livewire\Synth\BigDecimalSynth;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
             \Filament\Http\Responses\Auth\Contracts\LogoutResponse::class,
             \App\Filament\Http\Responses\Auth\LogoutResponse::class,
         );
+        Livewire::propertySynthesizer(BigDecimalSynth::class);
     }
 
     /**

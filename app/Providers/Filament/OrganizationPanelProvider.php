@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\PlanResource;
 use App\Filament\Resources\VenueResource;
 use App\Models\Organization;
 use Filament\Http\Middleware\Authenticate;
@@ -35,7 +36,8 @@ class OrganizationPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
             ->resources([
-                VenueResource::class
+                VenueResource::class,
+                PlanResource::class,
             ])
             ->pages([
                 Pages\Dashboard::class,

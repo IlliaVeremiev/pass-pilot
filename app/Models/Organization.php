@@ -18,10 +18,13 @@ use Illuminate\Support\Str;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Plan> $plans
+ * @property-read int|null $plans_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Venue> $venues
  * @property-read int|null $users_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Venue> $venues
  * @property-read int|null $venues_count
+ *
  * @method static Builder<static>|Organization newModelQuery()
  * @method static Builder<static>|Organization newQuery()
  * @method static Builder<static>|Organization query()
@@ -83,19 +86,18 @@ class Organization extends Model
         return $this->belongsTo(User::class, 'owner_id');
     }
 
-    /**
-     * The users that belong to the organization.
-     */
     public function users(): HasMany
     {
         return $this->hasMany(User::class, 'id', 'owner_id');
     }
 
-    /**
-     * The venues that belong to the organization.
-     */
     public function venues(): HasMany
     {
         return $this->hasMany(Venue::class);
+    }
+
+    public function plans(): HasMany
+    {
+        return $this->hasMany(Plan::class);
     }
 }

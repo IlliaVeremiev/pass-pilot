@@ -63,7 +63,6 @@ class VenueResource extends Resource
                     ])
                     ->columns(2),
 
-
                 FileUpload::make('image')
                     ->image()
                     ->label('Venue Image')
@@ -76,9 +75,9 @@ class VenueResource extends Resource
                     ->imagePreviewHeight('250')
                     ->imageResizeMode('cover')
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        $filename = Str::uuid() . '.webp';
+                        $filename = Str::uuid().'.webp';
                         $directory = 'venues';
-                        $manager = new ImageManager(new Driver());
+                        $manager = new ImageManager(new Driver);
                         $image = $manager->read($file->getRealPath());
                         $image = $image->resize(1200, null, function ($constraint) {
                             $constraint->aspectRatio();

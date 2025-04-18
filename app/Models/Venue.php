@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
  * @property bool $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Organization|null $organization
+ * @property-read \App\Models\Organization $organization
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue newQuery()
