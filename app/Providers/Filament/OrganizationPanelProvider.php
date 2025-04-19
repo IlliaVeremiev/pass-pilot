@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\MembershipResource;
 use App\Filament\Resources\PlanResource;
 use App\Filament\Resources\VenueResource;
 use App\Models\Organization;
@@ -38,6 +39,7 @@ class OrganizationPanelProvider extends PanelProvider
             ->resources([
                 VenueResource::class,
                 PlanResource::class,
+                MembershipResource::class,
             ])
             ->pages([
                 Pages\Dashboard::class,
