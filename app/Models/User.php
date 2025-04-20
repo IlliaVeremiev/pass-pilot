@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property string $id
@@ -32,6 +33,8 @@ use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Organization> $organizations
  * @property-read int|null $organizations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PersonalAccessToken> $tokens
+ * @property-read int|null $tokens_count
  * @property-read mixed $two_factor_recovery_codes
  * @property-read mixed $two_factor_secret
  *
@@ -52,9 +55,10 @@ use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
  */
 class User extends Authenticatable implements FilamentUser, HasName, HasTenants
 {
+    use HasApiTokens;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
-
     use Notifiable;
     use TwoFactorAuthenticatable;
 

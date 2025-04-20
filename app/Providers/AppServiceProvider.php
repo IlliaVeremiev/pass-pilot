@@ -11,7 +11,9 @@ use App\Http\Repositories\UserRepositoryInterface;
 use App\Http\Services\Impl\MembershipService;
 use App\Http\Services\MembershipServiceInterface;
 use App\Livewire\Synth\BigDecimalSynth;
+use App\Models\PersonalAccessToken;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\Sanctum;
 use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
@@ -43,6 +45,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 }
