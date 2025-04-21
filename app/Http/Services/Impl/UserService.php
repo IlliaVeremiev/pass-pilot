@@ -14,10 +14,9 @@ class UserService implements UserServiceInterface
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly HashManager $hashManager
-    ) {
-    }
+    ) {}
 
-    public function registerCustomer(RegisterCustomerForm $form): void
+    public function registerCustomer(RegisterCustomerForm $form): User
     {
         $existingUser = $this->userRepository->findByEmail($form->email);
         if ($existingUser !== null) {
@@ -25,8 +24,9 @@ class UserService implements UserServiceInterface
         }
         $user = new User;
         $user->email = $form->email;
-        $user->password = $this->hashManager->make($form->password);
+        $user->password = $form->password !== null ? $this->hashManager->make($form->password) : null;
         $user->name = $form->name;
-        $this->userRepository->save($user);
+
+        return $this->userRepository->save($user);
     }
 }

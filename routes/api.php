@@ -8,6 +8,7 @@ Route::get('/organizations/{id}', [OrganizationController::class, 'getById']);
 
 Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'registerCustomer']);
+Route::post('/sso/verify', [AuthenticationController::class, 'verifyExternalAuthentication']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth', [AuthenticationController::class, 'auth']);

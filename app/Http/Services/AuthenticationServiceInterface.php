@@ -12,4 +12,6 @@ interface AuthenticationServiceInterface
     public function generateToken(User $user): string;
 
     public function getAuthenticatedUser(): User;
+
+    public function handleExternalAuthentication(string $provider, string $idToken): string;
 }
