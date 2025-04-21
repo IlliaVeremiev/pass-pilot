@@ -75,7 +75,7 @@ class VenueResource extends Resource
                     ->imagePreviewHeight('250')
                     ->imageResizeMode('cover')
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        $filename = Str::uuid().'.webp';
+                        $filename = Str::uuid() . '.webp';
                         $directory = 'venues';
                         $manager = new ImageManager(new Driver);
                         $image = $manager->read($file->getRealPath());

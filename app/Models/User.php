@@ -59,6 +59,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasTenants
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
+
     use Notifiable;
     use TwoFactorAuthenticatable;
 

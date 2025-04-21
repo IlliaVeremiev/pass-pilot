@@ -17,6 +17,8 @@ use Illuminate\Support\Str;
  * @property string $owner_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Plan> $activePlans
+ * @property-read int|null $active_plans_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Membership> $memberships
  * @property-read int|null $memberships_count
  * @property-read \App\Models\User|null $owner
@@ -101,6 +103,11 @@ class Organization extends Model
     public function plans(): HasMany
     {
         return $this->hasMany(Plan::class);
+    }
+
+    public function activePlans(): HasMany
+    {
+        return $this->plans()->where('active', true);
     }
 
     public function memberships(): HasMany
